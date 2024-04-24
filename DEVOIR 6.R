@@ -1,8 +1,18 @@
+# ******************************************************************************************
+# ENSAE PIERRE DIAGNE DE DAKAR                                                             *
+# COURS DE TRAITEMENT STATISTIQUE AVEC R                                                   *
+# NOM & PRENOM : EDIMA BIYENDA HILDEGARDE                                                  *
+# ISEP2 2023_2024                                                                          *
+# ******************************************************************************************
+
+
+
+
 #Devoir 6
-#Renommer , creer , labéliser des variables
+#Renommer , creer , labÃ©liser des variables
 # 4 Recoder
 #5 changer de type
-#Découpage en classe
+#DÃ©coupage en classe
 #Merger
 
 #Renommer variables
@@ -15,27 +25,27 @@ colnames(cereales)[4:14] <- c("AutresCereales","Qtty_cons",
 View(cereales)
 #Creer une variable prix=qtty_achat*value_achat
 cereales$prix <- cereales$Qtty_achat * cereales$Value_achat
-#Labeliser la variables Taille_cons 0=aucune ,1=faible ,2=moyen , 3=élevé 7=très élevé:recoder des variables
+#Labeliser la variables Taille_cons 0=aucune ,1=faible ,2=moyen , 3=Ã©levÃ© 7=trÃ¨s Ã©levÃ©:recoder des variables
 table(cereales$Taille_cons)
-# Définition des niveaux de la variable Taille_cons
-niveaux <- c("aucune", "faible", "moyen", "élevé", "très élevé")
-# Conversion de la variable Taille_cons en facteur avec les niveaux spécifiés
+# DÃ©finition des niveaux de la variable Taille_cons
+niveaux <- c("aucune", "faible", "moyen", "Ã©levÃ©", "trÃ¨s Ã©levÃ©")
+# Conversion de la variable Taille_cons en facteur avec les niveaux spÃ©cifiÃ©s
 cereales$Taille_cons <- factor(cereales$Taille_cons, levels = c(0, 1, 2, 3, 7), labels = niveaux)
 
-#5 changer de type te la variables Qtty_cons initialement en num en type caractère
+#5 changer de type te la variables Qtty_cons initialement en num en type caractÃ¨re
 
-# Conversion de la variable Qtty_cons en type caractère
+# Conversion de la variable Qtty_cons en type caractÃ¨re
 cereales$Qtty_cons <- as.character(cereales$Qtty_cons)
 
-#Découpage en classe de la classe Qtty_cons
+#DÃ©coupage en classe de la classe Qtty_cons
 
-# Spécifier les points de coupure
+# SpÃ©cifier les points de coupure
 points_de_coupe <- c(0, 50, 70, 110, 168)
 
 # Labels pour les classes
-labels <- c("Très faible", "Faible", "Moyen", "Élevé")
+labels <- c("TrÃ¨s faible", "Faible", "Moyen", "Ã‰levÃ©")
 
-# Découper la variable Qtty_cons en classes
+# DÃ©couper la variable Qtty_cons en classes
 cereales$Qtty_cons_classe <- cut(cereales$Qtty_cons, breaks = points_de_coupe, labels = labels, include.lowest = TRUE)
 
 #Merger
@@ -47,3 +57,5 @@ View(conversion)
 #Merger les dataframe conversion et cereales
 colnames(conversion)[colnames(conversion) == "produitID"] <- "cereales_id"
 dataframe_fusion <- merge(conversion, cereales, by = cereales_id)
+
+# ********************************************************************************************************************************
